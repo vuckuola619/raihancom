@@ -61,7 +61,7 @@
   --secondary: oklch(0.96 0.012 250);
   --secondary-foreground: oklch(0.21 0.06 265);
   --muted: oklch(0.96 0.012 250);
-  --muted-foreground: oklch(0.5 0.03 257);
+  --muted-foreground: oklch(0.42 0.02 257);
   /* Pale blue accent */
   --accent: oklch(0.94 0.04 255);
   --accent-foreground: oklch(0.35 0.18 263);

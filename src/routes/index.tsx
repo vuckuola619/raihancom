@@ -55,10 +55,10 @@ export const Route = createFileRoute("/")({
           "Tawarkan perangkat kantor bekas Anda (PABX Panasonic, printer, CPU, proyektor, HT) ke Raihan Com. Pengambilan on-site langsung di wilayah Jabodetabek.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://raihancom.com/" },
       { name: "theme-color", content: "#1D4ED8" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://raihancom.com/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -341,7 +341,8 @@ Saya bisa kirim foto barang.`;
         )}
       </header>
 
-      {/* Hero */}
+      <main>
+        {/* Hero */}
       <section id="top" ref={heroRef} className="relative overflow-hidden">
         <div className="absolute inset-0 grid-bg [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
         <div className="absolute inset-0 hero-glow" />
@@ -910,6 +911,7 @@ Saya bisa kirim foto barang.`}
           </div>
         </motion.div>
       </Section>
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-border py-10">

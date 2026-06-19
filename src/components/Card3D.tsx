@@ -529,9 +529,6 @@ export function Card3D({ className = "" }: Card3DProps) {
       <div
         ref={cardRef}
         className="card-3d-scene"
-        tabIndex={0}
-        role="button"
-        aria-label="Kartu nama bisnis Raihan Com. Klik atau tekan Enter atau Spasi untuk membalik kartu."
         style={{
           transformStyle: "preserve-3d",
           ...tiltStyle,
@@ -539,12 +536,6 @@ export function Card3D({ className = "" }: Card3DProps) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={handleFlip}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleFlip(e);
-          }
-        }}
       >
         {/* FRONT FACE OF THE CARD */}
         <div className="card-face-3d card-front-3d">
