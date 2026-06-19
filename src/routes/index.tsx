@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { HeroSlider } from "@/components/HeroSlider";
 import { Card3D } from "@/components/Card3D";
-import rcLogo from "@/assets/rc-logo.png";
+import rcLogo from "@/assets/rc-logo-optimized.webp";
 import {
   waLink,
   WA_PRIMARY,
