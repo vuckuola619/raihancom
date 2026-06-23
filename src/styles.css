@@ -216,6 +216,17 @@
   .hero-glow {
     background: radial-gradient(60% 60% at 50% 40%, oklch(0.5 0.22 263 / 0.18) 0%, transparent 70%);
   }
+  .hero-glow-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      800px circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
+      oklch(0.5 0.22 263 / 0.15),
+      transparent 80%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
 
   /* Floating Capsule Navbar */
   .navbar-capsule {
@@ -275,23 +286,23 @@
     font-weight: 600;
   }
 
-  /* Teal/Cyan Modern CTA */
-  .btn-cyan-gradient {
-    background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
+  /* Brand Gradient CTA */
+  .btn-brand-gradient {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
     color: white;
     font-weight: 600;
     border-radius: 999px;
-    box-shadow: 0 8px 24px -6px rgba(13, 148, 136, 0.5);
+    box-shadow: 0 8px 24px -6px oklch(0.5 0.22 263 / 0.35);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .btn-cyan-gradient:hover {
+  .btn-brand-gradient:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px -6px rgba(13, 148, 136, 0.7);
+    box-shadow: 0 12px 32px -6px oklch(0.5 0.22 263 / 0.5);
     filter: brightness(1.05);
   }
   
-  .btn-cyan-gradient:active {
+  .btn-brand-gradient:active {
     transform: translateY(0);
   }
 }

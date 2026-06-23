@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { HeroSlider } from "@/components/HeroSlider";
 import { Card3D } from "@/components/Card3D";
+import { Magnetic } from "@/components/Magnetic";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import rcLogo from "@/assets/rc-logo-optimized.webp";
 import {
   waLink,
@@ -29,7 +31,7 @@ import {
   WA_PRIMARY_DISPLAY,
   WA_SECONDARY_DISPLAY,
 } from "@/lib/whatsapp";
-import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -229,8 +231,17 @@ Lokasi        :
 Saya bisa kirim foto barang.`;
     navigator.clipboard.writeText(text);
     setCopied(true);
-    toast.success("Format pesan berhasil disalin!");
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = heroRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    el.style.setProperty("--mouse-x", `${x}px`);
+    el.style.setProperty("--mouse-y", `${y}px`);
   };
 
   return (
@@ -274,15 +285,17 @@ Saya bisa kirim foto barang.`;
           {/* Right side controls */}
           <div className="flex items-center gap-2 z-50">
             {/* Desktop CTA Button */}
-            <a
-              href={primaryHref}
-              target="_blank"
-              rel="noopener"
-              className="hidden md:flex btn-cyan-gradient py-2 px-5 text-[13px] items-center gap-1.5"
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              <span>Hubungi Kami</span>
-            </a>
+            <Magnetic>
+              <a
+                href={primaryHref}
+                target="_blank"
+                rel="noopener"
+                className="hidden md:flex btn-brand-gradient py-2 px-5 text-[13px] items-center gap-1.5"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>Hubungi Kami</span>
+              </a>
+            </Magnetic>
 
             {/* Mobile Menu Toggle Button */}
             <button
@@ -332,7 +345,7 @@ Saya bisa kirim foto barang.`;
               target="_blank"
               rel="noopener"
               onClick={() => setMobileMenuOpen(false)}
-              className="btn-cyan-gradient w-full justify-center py-2.5 text-[14px] flex items-center gap-1.5 mt-1"
+              className="btn-brand-gradient w-full justify-center py-2.5 text-[14px] flex items-center gap-1.5 mt-1"
             >
               <WhatsAppIcon className="w-4 h-4" />
               <span>Chat WhatsApp</span>
@@ -343,9 +356,14 @@ Saya bisa kirim foto barang.`;
 
       <main>
         {/* Hero */}
-      <section id="top" ref={heroRef} className="relative overflow-hidden">
+      <section
+        id="top"
+        ref={heroRef}
+        className="relative overflow-hidden"
+        onMouseMove={handleHeroMouseMove}
+      >
         <div className="absolute inset-0 grid-bg [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
-        <div className="absolute inset-0 hero-glow" />
+        <div className="absolute inset-0 hero-glow-spotlight" />
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
@@ -392,9 +410,8 @@ Saya bisa kirim foto barang.`;
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-7 flex flex-wrap gap-3"
             >
-              <a href={primaryHref} target="_blank" rel="noopener" className="btn-primary">
-                <WhatsAppIcon className="w-4 h-4" />
-                Hubungi via WhatsApp
+              <a href="#kontak" className="btn-brand">
+                Hubungi Kami
               </a>
               <a href="#kategori" className="btn-ghost">
                 Lihat kategori
@@ -568,13 +585,14 @@ Saya bisa kirim foto barang.`;
               whileInView="show"
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="card-surface card-interactive"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-brand-deep text-white grid place-items-center shadow-brand">
-                <s.icon className="w-5 h-5" strokeWidth={1.8} />
-              </div>
-              <h3 className="mt-4 font-semibold text-[17px]">{s.title}</h3>
-              <p className="mt-1.5 text-[14px] text-muted-foreground leading-[1.6]">{s.desc}</p>
+              <SpotlightCard className="card-surface card-interactive h-full">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-brand-deep text-white grid place-items-center shadow-brand">
+                  <s.icon className="w-5 h-5" strokeWidth={1.8} />
+                </div>
+                <h3 className="mt-4 font-semibold text-[17px]">{s.title}</h3>
+                <p className="mt-1.5 text-[14px] text-muted-foreground leading-[1.6]">{s.desc}</p>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>
@@ -608,22 +626,23 @@ Saya bisa kirim foto barang.`;
               whileInView="show"
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="card-surface card-interactive group"
             >
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-accent text-primary grid place-items-center group-hover:bg-primary group-hover:text-white transition-colors">
-                  <c.icon className="w-5 h-5" strokeWidth={1.8} />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[10px] font-bold tracking-[0.14em] text-muted-foreground/70">
-                    0{i + 1}
+              <SpotlightCard className="card-surface card-interactive group h-full">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-accent text-primary grid place-items-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <c.icon className="w-5 h-5" strokeWidth={1.8} />
                   </div>
-                  <h3 className="mt-0.5 font-semibold text-[15px] leading-tight">{c.name}</h3>
-                  <p className="mt-1.5 text-[13px] text-muted-foreground leading-[1.55]">
-                    {c.desc}
-                  </p>
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-bold tracking-[0.14em] text-muted-foreground/70">
+                      0{i + 1}
+                    </div>
+                    <h3 className="mt-0.5 font-semibold text-[15px] leading-tight">{c.name}</h3>
+                    <p className="mt-1.5 text-[13px] text-muted-foreground leading-[1.55]">
+                      {c.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>
@@ -669,13 +688,14 @@ Saya bisa kirim foto barang.`;
               whileInView="show"
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="card-surface !p-5"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center font-bold text-sm">
-                {item.city.substring(0, 2).toUpperCase()}
-              </div>
-              <h3 className="mt-4 font-semibold text-[16px]">{item.city}</h3>
-              <p className="mt-1.5 text-[13px] text-muted-foreground leading-snug">{item.areas}</p>
+              <SpotlightCard className="card-surface !p-5 h-full">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center font-bold text-sm">
+                  {item.city.substring(0, 2).toUpperCase()}
+                </div>
+                <h3 className="mt-4 font-semibold text-[16px]">{item.city}</h3>
+                <p className="mt-1.5 text-[13px] text-muted-foreground leading-snug">{item.areas}</p>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>
@@ -715,26 +735,23 @@ Saya bisa kirim foto barang.`;
               whileInView="show"
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.1 }}
-              className="card-surface card-interactive relative"
+              className="relative"
             >
-              <div className="absolute -top-3 left-5 px-2 py-0.5 rounded-full bg-foreground text-background text-[10px] font-bold tracking-wider">
-                STEP {i + 1}
-              </div>
-              <div className="mt-2 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-brand-deep text-white grid place-items-center">
-                <s.icon className="w-5 h-5" strokeWidth={1.8} />
-              </div>
-              <h3 className="mt-4 font-semibold text-[16px]">{s.title}</h3>
-              <p className="mt-1.5 text-[13.5px] text-muted-foreground leading-[1.6]">{s.desc}</p>
+              <SpotlightCard className="card-surface card-interactive relative h-full">
+                <div className="absolute -top-3 left-5 px-2 py-0.5 rounded-full bg-foreground text-background text-[10px] font-bold tracking-wider z-20">
+                  STEP {i + 1}
+                </div>
+                <div className="mt-2 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-brand-deep text-white grid place-items-center">
+                  <s.icon className="w-5 h-5" strokeWidth={1.8} />
+                </div>
+                <h3 className="mt-4 font-semibold text-[16px]">{s.title}</h3>
+                <p className="mt-1.5 text-[13px] text-muted-foreground leading-[1.6]">{s.desc}</p>
+              </SpotlightCard>
             </motion.li>
           ))}
         </ol>
 
-        <div className="mt-10">
-          <a href={primaryHref} target="_blank" rel="noopener" className="btn-primary">
-            <WhatsAppIcon className="w-4 h-4" />
-            Kirim detail barang sekarang
-          </a>
-        </div>
+
       </Section>
 
       {/* Kontak */}
@@ -897,9 +914,11 @@ Saya bisa kirim foto barang.`}
               jumlah, kondisi, dan lokasi — kami akan respons langsung.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={primaryHref} target="_blank" rel="noopener" className="btn-primary">
-                <WhatsAppIcon className="w-4 h-4" />
-                Chat WhatsApp
+              <a
+                href="#kontak"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[15px] font-semibold bg-white text-blue-900 hover:bg-white/90 transition-all hover:translate-y-[-1px]"
+              >
+                Hubungi Kami
               </a>
               <a
                 href="#proses"
@@ -994,15 +1013,19 @@ Saya bisa kirim foto barang.`}
       </a>
 
       {/* Desktop floating WA */}
-      <a
-        href={primaryHref}
-        target="_blank"
-        rel="noopener"
-        aria-label="WhatsApp Raihan Com"
-        className="hidden md:grid fixed bottom-6 right-6 z-50 w-14 h-14 place-items-center rounded-full bg-wa text-white shadow-wa hover:bg-wa-hover transition-colors pulse-ring"
-      >
-        <WhatsAppIcon className="w-6 h-6 relative" />
-      </a>
+      <div className="hidden md:block fixed bottom-6 right-6 z-50">
+        <Magnetic>
+          <a
+            href={primaryHref}
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp Raihan Com"
+            className="grid w-14 h-14 place-items-center rounded-full bg-wa text-white shadow-wa hover:bg-wa-hover transition-colors pulse-ring"
+          >
+            <WhatsAppIcon className="w-6 h-6 relative" />
+          </a>
+        </Magnetic>
+      </div>
     </div>
   );
 }

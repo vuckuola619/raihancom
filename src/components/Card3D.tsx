@@ -567,8 +567,8 @@ export function Card3D({ className = "" }: Card3DProps) {
             <svg className="logo-rc-3d" viewBox="0 0 150 90" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="logoBlueGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#0058e6" />
-                  <stop offset="100%" stop-color="#0088ff" />
+                  <stop offset="0%" stopColor="#0058e6" />
+                  <stop offset="100%" stopColor="#0088ff" />
                 </linearGradient>
               </defs>
               {/* Stylized 'R' */}
@@ -897,19 +897,19 @@ export function Card3D({ className = "" }: Card3DProps) {
                 rx="3"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M35,55 L35,42 L75,42 L75,55"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M35,90 L35,98 L75,98 L75,90"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               {/* Monitor/PC Outline */}
               <rect
@@ -920,21 +920,21 @@ export function Card3D({ className = "" }: Card3DProps) {
                 rx="2"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 opacity="0.85"
               />
               <path
                 d="M120,63 L120,78 L135,78 L135,63"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 opacity="0.85"
               />
               <path
                 d="M110,78 L145,78"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 opacity="0.85"
               />
               {/* CPU Tower Outline (behind monitor) */}
@@ -946,7 +946,7 @@ export function Card3D({ className = "" }: Card3DProps) {
                 rx="2"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 opacity="0.75"
               />
               <circle cx="161" cy="25" r="2" fill="currentColor" opacity="0.75" />
@@ -956,7 +956,7 @@ export function Card3D({ className = "" }: Card3DProps) {
                 x2="167"
                 y2="35"
                 stroke="currentColor"
-                stroke-width="1"
+                strokeWidth="1"
                 opacity="0.75"
               />
               {/* Projector Outline (in front) */}
@@ -968,9 +968,9 @@ export function Card3D({ className = "" }: Card3DProps) {
                 rx="3"
                 fill="#f7f9fc"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
-              <circle cx="88" cy="81" r="5" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="88" cy="81" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
               <circle cx="88" cy="81" r="2" fill="currentColor" />
               {/* Small Telephone outline */}
               <rect
@@ -981,10 +981,10 @@ export function Card3D({ className = "" }: Card3DProps) {
                 rx="2"
                 fill="#f7f9fc"
                 stroke="currentColor"
-                stroke-width="1.2"
+                strokeWidth="1.2"
                 opacity="0.9"
               />
-              <path d="M138,65 L138,82" stroke="currentColor" stroke-width="1.2" opacity="0.9" />
+              <path d="M138,65 L138,82" stroke="currentColor" strokeWidth="1.2" opacity="0.9" />
               <circle cx="148" cy="71" r="1" fill="currentColor" opacity="0.9" />
               <circle cx="154" cy="71" r="1" fill="currentColor" opacity="0.9" />
               <circle cx="160" cy="71" r="1" fill="currentColor" opacity="0.9" />
