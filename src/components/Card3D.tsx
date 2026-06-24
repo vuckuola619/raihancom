@@ -22,6 +22,23 @@ export function Card3D({ className = "" }: Card3DProps) {
   const primaryHref = waLink(WA_PRIMARY);
   const secondaryHref = waLink(WA_SECONDARY);
 
+  useEffect(() => {
+    setTiltStyle({
+      transform: isFlipped ? "rotateY(180deg) rotateX(0deg)" : "rotateY(0deg) rotateX(0deg)",
+      transition: "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)",
+    });
+    setGlareStyle({
+      background:
+        "radial-gradient(circle 250px at 50% 50%, rgba(255, 255, 255, 0) 0%, transparent 100%)",
+      transition: "background 0.5s ease",
+    });
+    setSheenStyle({
+      background:
+        "radial-gradient(circle 350px at 50% 50%, rgba(58, 141, 255, 0) 0%, transparent 100%)",
+      transition: "background 0.5s ease",
+    });
+  }, [isFlipped]);
+
 
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -194,7 +194,6 @@ function HomePage() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
 
-  const [heroTab, setHeroTab] = useState<"card" | "slider">("card");
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
@@ -446,72 +445,42 @@ Saya bisa kirim foto barang.`;
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative flex flex-col gap-4"
           >
-            {/* View Selector Tabs */}
-            <div className="flex bg-muted/60 p-1 rounded-full border border-border/80 self-center z-10">
-              <button
-                onClick={() => setHeroTab("card")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
-                  heroTab === "card"
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Interactive 3D Card
-              </button>
-              <button
-                onClick={() => setHeroTab("slider")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
-                  heroTab === "slider"
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Photo Gallery
-              </button>
-            </div>
-
-            {/* Selected View */}
+            {/* Photo Gallery View */}
             <div className="w-full relative min-h-[350px]">
-              {heroTab === "card" ? (
-                <div className="w-full flex justify-center animate-in fade-in zoom-in-95 duration-300">
-                  <Card3D />
-                </div>
-              ) : (
-                <div className="w-full animate-in fade-in zoom-in-95 duration-300">
-                  <HeroSlider />
+              <div className="w-full animate-in fade-in zoom-in-95 duration-300">
+                <HeroSlider />
 
-                  {/* Floating stat cards (Only in Photo Gallery view to avoid layout overlap with 3D card) */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="hidden sm:flex absolute -left-4 top-8 card-surface !p-3 items-center gap-3"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-wa/10 text-wa grid place-items-center">
-                      <WhatsAppIcon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-[11px] text-muted-foreground">Online sekarang</div>
-                      <div className="text-[13px] font-semibold">Tim Raihan Com</div>
-                    </div>
-                  </motion.div>
+                {/* Floating stat cards */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="hidden sm:flex absolute -left-4 top-8 card-surface !p-3 items-center gap-3 z-10"
+                >
+                  <div className="w-9 h-9 rounded-full bg-wa/10 text-wa grid place-items-center">
+                    <WhatsAppIcon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-muted-foreground">Online sekarang</div>
+                    <div className="text-[13px] font-semibold">Tim Raihan Com</div>
+                  </div>
+                </motion.div>
 
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="hidden sm:flex absolute -right-2 bottom-6 card-surface !p-3 items-center gap-3"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-primary/10 text-primary grid place-items-center">
-                      <CheckCircle2 className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-[11px] text-muted-foreground">7+ kategori</div>
-                      <div className="text-[13px] font-semibold">Alat kantor diterima</div>
-                    </div>
-                  </motion.div>
-                </div>
-              )}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="hidden sm:flex absolute -right-2 bottom-6 card-surface !p-3 items-center gap-3 z-10"
+                >
+                  <div className="w-9 h-9 rounded-full bg-primary/10 text-primary grid place-items-center">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-muted-foreground">7+ kategori</div>
+                    <div className="text-[13px] font-semibold">Alat kantor diterima</div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -756,22 +725,26 @@ Saya bisa kirim foto barang.`;
 
       {/* Kontak */}
       <Section id="kontak" className="bg-card/40 border-y border-border/70">
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="flex flex-col gap-6"
           >
-            <span className="section-label">Kontak</span>
-            <h2 className="mt-3 text-[26px] md:text-[36px] leading-[1.1]">Hubungi Raihan Com</h2>
-            <p className="mt-3 text-[15px] text-muted-foreground leading-[1.7] max-w-lg">
-              Kirim foto barang, kondisi, jumlah unit, dan lokasi melalui WhatsApp. Tim Raihan Com
-              akan merespons langsung.
-            </p>
+            <div>
+              <span className="section-label">Kontak</span>
+              <h2 className="mt-3 text-[26px] md:text-[36px] leading-[1.1]">Hubungi Raihan Com</h2>
+              <p className="mt-3 text-[15px] text-muted-foreground leading-[1.7] max-w-lg">
+                Kirim foto barang, kondisi, jumlah unit, dan lokasi melalui WhatsApp. Tim Raihan Com
+                akan merespons langsung.
+              </p>
+            </div>
 
-            <div className="mt-7 card-surface space-y-4">
+            {/* WA Box */}
+            <div className="card-surface space-y-4">
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-brand-deep text-white grid place-items-center font-semibold text-[15px]">
@@ -808,17 +781,9 @@ Saya bisa kirim foto barang.`;
                 Silakan hubungi salah satu nomor di atas untuk penawaran cepat.
               </p>
             </div>
-          </motion.div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="card-surface flex flex-col justify-between"
-          >
-            <div>
+            {/* Recommended Format Box */}
+            <div className="card-surface">
               <div className="flex items-center justify-between">
                 <div className="text-sm font-semibold">Format pesan disarankan</div>
                 <button
@@ -840,6 +805,17 @@ Lokasi        :
 Saya bisa kirim foto barang.`}
               </pre>
             </div>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="flex flex-col items-center justify-center w-full"
+          >
+            <Card3D />
           </motion.div>
         </div>
       </Section>
