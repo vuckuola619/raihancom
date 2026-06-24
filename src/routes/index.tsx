@@ -34,55 +34,6 @@ import {
 
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Raihan Com — Menerima Alat Bekas Kantor Jakarta & Jabodetabek" },
-      {
-        name: "description",
-        content:
-          "Raihan Com menerima alat bekas kantor di wilayah Jakarta, Bogor, Depok, Tangerang, Bekasi (Jabodetabek). PABX Panasonic, printer, CPU, proyektor, HT. Pengambilan langsung di lokasi.",
-      },
-      {
-        name: "keywords",
-        content:
-          "alat bekas kantor Jakarta, menerima alat kantor bekas, jual PABX bekas Tangerang, printer bekas Bekasi, CPU bekas Depok, proyektor bekas, HT bekas, radio komunikasi bekas, Raihan Com, borongan alat kantor Jabodetabek",
-      },
-      {
-        property: "og:title",
-        content: "Raihan Com — Menerima Alat Bekas Kantor Jakarta & Jabodetabek",
-      },
-      {
-        property: "og:description",
-        content:
-          "Tawarkan perangkat kantor bekas Anda (PABX Panasonic, printer, CPU, proyektor, HT) ke Raihan Com. Pengambilan on-site langsung di wilayah Jabodetabek.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://raihancom.com/" },
-      { name: "theme-color", content: "#1D4ED8" },
-    ],
-    links: [{ rel: "canonical", href: "https://raihancom.com/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Raihan Com",
-          description:
-            "Raihan Com menerima alat bekas kantor seperti Panasonic PABX, printer, CPU, proyektor, HT / radio komunikasi, dan perangkat elektronik kantor lain untuk wilayah Jakarta & Jabodetabek.",
-          telephone: "+628567578388",
-          priceRange: "$$",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Jakarta",
-            addressRegion: "DKI Jakarta",
-            addressCountry: "ID",
-          },
-          areaServed: ["Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi", "Jabodetabek"],
-        }),
-      },
-    ],
-  }),
   component: HomePage,
 });
 
